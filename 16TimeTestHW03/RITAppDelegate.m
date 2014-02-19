@@ -7,6 +7,15 @@
 //
 
 #import "RITAppDelegate.h"
+#import "RITStudent.h"
+
+@interface RITAppDelegate ()
+
+@property (strong, nonatomic) NSDate* timerDate;
+@property (strong, nonatomic) NSDateComponents* timerComponents;
+@property (strong, nonatomic) NSArray* students;
+
+@end
 
 @implementation RITAppDelegate
 
@@ -16,7 +25,75 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    NSInteger           studentsNumber  = 30;
+    NSMutableArray*     students        = [NSMutableArray array];
+    NSCalendar*         calendar        = [NSCalendar currentCalendar];
+    NSArray*            firstNames      = @[@"Lex", @"Conrad", @"Alan", @"Alex", @"Amos", @"Bart", @"Ben", @"Bill", @"Bob", @"Jim"];
+    NSArray*            lastNames       = @[@"Smith", @"Johnson", @"Brown", @"Brown", @"Moore", @"Robinson", @"King", @"Scott", @"Evans", @"Bell"];
+    NSInteger           SecondsInDay    = 60 * 60 * 24;
+    
+    for (int i = 0; i < studentsNumber; i++) {
+        
+        RITStudent*     student         = [RITStudent studentWithlastName:lastNames[arc4random() % 10] andFirstName:firstNames[arc4random() % 10]];
+        student.personalID              = i + 1;
+        
+        // define first date for year of birth
+        NSInteger           studentAge  = arc4random() % 35 + 16;
+        NSDate*             today       = [NSDate date];
+        NSDateComponents*   comp        = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:today];
+        comp.year   -= studentAge;
+        comp.month  = 1;
+        comp.day    = 1;
+        NSDate* firstDateOfYear         = [calendar dateFromComponents:comp];
+        
+        comp.month  = 12;
+        comp.day    = 31;
+        NSDate* lastDateOfYear          = [calendar dateFromComponents:comp];
+        
+        // days number in the birth year
+        NSInteger           daysNumber  = [calendar
+                                           ordinalityOfUnit:NSCalendarUnitDay
+                                           inUnit:NSCalendarUnitYear
+                                           forDate:lastDateOfYear];
+        
+        student.dateOFBirth             = [NSDate dateWithTimeInterval:arc4random() % (daysNumber + 1) * SecondsInDay sinceDate:firstDateOfYear];
+        
+        [students addObject:student];
+    }
+    
+    NSComparisonResult (^sortingBlock)(id, id) = ^(id obj01, id obj02) {
+        
+        RITStudent* student01   = (RITStudent*)obj01;
+        RITStudent* student02   = (RITStudent*)obj02;
+        
+        return [[student02 dateOFBirth] compare:[student01 dateOFBirth]];
+        
+    };
+    
+    self.students  = [students sortedArrayUsingComparator:sortingBlock];
+    
+    /*
+    NSLog(@"Students sorted by bitrh date:");
+    for (RITStudent* student in sortedByDate) {
+        NSLog(@"%@", student);
+    }
+    */
+    
+    self.timerDate = [NSDate date];
+    
+    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(birthdayTimer:) userInfo:nil repeats:YES];
+    
     return YES;
+}
+
+- (void) birthdayTimer:(NSTimer*) timer {
+    self.timerDate = [NSDate dateWithTimeInterval:60 * 60 * 24 sinceDate:self.timerDate];
+    NSDateFormatter*    dateFormatter   = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd.MM.yyyy"];
+    NSLog(@"%@", [dateFormatter stringFromDate:self.timerDate]);
+    
+    //self.timerComponents
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

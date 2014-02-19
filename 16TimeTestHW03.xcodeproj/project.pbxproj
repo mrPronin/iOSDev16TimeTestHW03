@@ -19,6 +19,7 @@
 		A2109CC718B4318F00833B1B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2109CAF18B4318F00833B1B /* UIKit.framework */; };
 		A2109CCF18B4319000833B1B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A2109CCD18B4319000833B1B /* InfoPlist.strings */; };
 		A2109CD118B4319000833B1B /* _6TimeTestHW03Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A2109CD018B4319000833B1B /* _6TimeTestHW03Tests.m */; };
+		A2109CDC18B4320600833B1B /* RITStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = A2109CDB18B4320600833B1B /* RITStudent.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,8 @@
 		A2109CCC18B4319000833B1B /* 16TimeTestHW03Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "16TimeTestHW03Tests-Info.plist"; sourceTree = "<group>"; };
 		A2109CCE18B4319000833B1B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A2109CD018B4319000833B1B /* _6TimeTestHW03Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _6TimeTestHW03Tests.m; sourceTree = "<group>"; };
+		A2109CDA18B4320600833B1B /* RITStudent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITStudent.h; sourceTree = "<group>"; };
+		A2109CDB18B4320600833B1B /* RITStudent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RITStudent.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +110,8 @@
 		A2109CB118B4318F00833B1B /* 16TimeTestHW03 */ = {
 			isa = PBXGroup;
 			children = (
+				A2109CDA18B4320600833B1B /* RITStudent.h */,
+				A2109CDB18B4320600833B1B /* RITStudent.m */,
 				A2109CBA18B4318F00833B1B /* RITAppDelegate.h */,
 				A2109CBB18B4318F00833B1B /* RITAppDelegate.m */,
 				A2109CBD18B4318F00833B1B /* Images.xcassets */,
@@ -241,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2109CBC18B4318F00833B1B /* RITAppDelegate.m in Sources */,
+				A2109CDC18B4320600833B1B /* RITStudent.m in Sources */,
 				A2109CB818B4318F00833B1B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
