@@ -23,7 +23,7 @@
                                        options:0];
     
     return [NSString
-            stringWithFormat:@"%@ %@, date fo birth: %@, age: %d",
+            stringWithFormat:@"%@ %@, date of birth: %@, age: %d",
             _lastName,
             _firstName,
             [dateFormatter stringFromDate:_dateOFBirth],
